@@ -55,27 +55,26 @@ void loop() {
   gyro_z = Wire.read()<<8 | Wire.read(); // reading registers: 0x47 (GYRO_ZOUT_H) and 0x48 (GYRO_ZOUT_L)
   
   // print out data from IMU
-  Serial.print("aX ");
   Serial.print(convert_int16_to_str(accelerometer_x));
-  Serial.print("/aY "); 
+  Serial.print("/"); 
   Serial.print(convert_int16_to_str(accelerometer_y));
-  Serial.print("/aZ "); 
+  Serial.print("/"); 
   Serial.print(convert_int16_to_str(accelerometer_z));
   // the following equation was taken from the documentation [MPU-6000/MPU-6050 Register Map and Description, p.30]
-  Serial.print("/temp ");
+  Serial.print("/");
   Serial.print(temperature/340.00+36.53);
-  Serial.print("/gX "); 
+  Serial.print("/"); 
   Serial.print(convert_int16_to_str(gyro_x));
-  Serial.print("/gY "); 
+  Serial.print("/"); 
   Serial.print(convert_int16_to_str(gyro_y));
-  Serial.print("/gZ "); 
+  Serial.print("/"); 
   Serial.print(convert_int16_to_str(gyro_z));
 
   // print out data from pressure sensor
   if (millis() < 1000){
     tareValue = scale.get_units();
   }
-  Serial.print("/pre ");
+  Serial.print("/");
   Serial.print(scale.get_units() - tareValue, 1);
   Serial.println();
 
